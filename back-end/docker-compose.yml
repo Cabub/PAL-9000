@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  package:
+    build: .
+    container_name: package
+    restart: no
+    volumes:
+      - ./target:/app/target
+      - ./src:/app/src
+      - ./requirements.txt:/app/requirements.txt
+      - ./package.sh:/app/package.sh
