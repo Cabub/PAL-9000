@@ -1,8 +1,8 @@
 back-end/.venv
 ssl-cert
-front-end/node_modules
-front-end/chat.cabub.com/build
-front-end/chat.cabub.com/node_modules
+
+front-end/build
+
 # dependencies
 front-end/node_modules
 front-end/.pnp

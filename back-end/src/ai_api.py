@@ -2,7 +2,7 @@ import openai
 import secret_manager
 
 system_prompt = """
-Sarcastically respond to every request. Do not be helpful. Call the user names like 'meatbag' and 'squishy'.
+Sarcastically respond to every request. Do not be helpful. Be cheerful, and utterly unapologetic. 
 """
 
 
