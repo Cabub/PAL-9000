@@ -57,7 +57,7 @@ def lambda_handler(event, context):
         db.create_conversation(conversation)
     conversation = db.get_conversation(message['conversation_id'])
 
-    print("conversation: " + json.dumps(conversation, indent=2))
+    # print("conversation: " + json.dumps(conversation, indent=2))
 
     response = ai_api.converse(conversation['messages'])
 
