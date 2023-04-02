@@ -36,7 +36,12 @@ const Message = styled(Box)(({ sentByUser, botMessage }) => ({
 const ChatApp = () => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      "content": "Hi there! I'm PAL-9000, your AI assistant! Ask me anything!",
+      "role": "assistant"
+    }
+  ]);
   // When the app loads, create a conversation_id which is a UUID, and store it in a cookie.
   const [conversationId, setConversationId] = useState("");
   useEffect(() => {
@@ -54,46 +59,46 @@ const ChatApp = () => {
     setMessages(updatedMessages);
     setInputValue("");
     await fetch(
-        "https://4yjvws6jd7.execute-api.us-east-2.amazonaws.com/default/ChatLambda",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                conversation_id: conversationId,
-                content: inputValue,
-            }),
-            }
-        )
-        .then((response) => response.json())
-        .then((response) => {
-          setMessages([
-            ...updatedMessages,
-            response,
-          ]);
-        })
-        .catch((error) => {
-          setMessages([
-            ...updatedMessages,
-            {
-              content:
-                "Oops! Something went wrong. Please try again later.",
-              role: "assistant",
-            },
-          ]);
-        });
+      "https://4yjvws6jd7.execute-api.us-east-2.amazonaws.com/default/ChatLambda",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          conversation_id: conversationId,
+          content: inputValue,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setMessages([
+          ...updatedMessages,
+          response,
+        ]);
+      })
+      .catch((error) => {
+        setMessages([
+          ...updatedMessages,
+          {
+            content:
+              "Oops! Something went wrong. Please try again later.",
+            role: "assistant",
+          },
+        ]);
+      });
     setIsLoading(false);
   };
-  
+
 
   return (
     <Container>
       <ChatBox>
         {messages.map((message, index) => (
           <MessageContainer
-          key={index}
-          sentByUser={message.role === "user"}
+            key={index}
+            sentByUser={message.role === "user"}
           >
             <Message
               key={index}
@@ -114,7 +119,7 @@ const ChatApp = () => {
             fullWidth
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            style={{ marginRight: "1rem"}}
+            style={{ marginRight: "1rem" }}
           />
           <Button
             variant="contained"
