@@ -1,4 +1,5 @@
 back-end/.venv
+back-end/target
 ssl-cert
 
 front-end/build
