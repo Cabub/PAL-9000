@@ -69,7 +69,7 @@ const ChatApp = () => {
         .then((response) => response.json())
         .then((response) => {
           setMessages([
-            ...messages,
+            ...updatedMessages,
             response,
           ]);
         })
